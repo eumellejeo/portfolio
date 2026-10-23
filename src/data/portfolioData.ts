@@ -94,6 +94,33 @@ export const portfolioData: PortfolioData = {
     },
   ],
 
+  techStack: [
+    {
+      id: 'languages',
+      title: 'Programming Languages',
+      position: 'top-left',
+      skills: ['python', 'JavaScript'],
+    },
+    {
+      id: 'frameworks',
+      title: 'Frameworks & Libraries',
+      position: 'bottom-left',
+      skills: ['PyTorch'],
+    },
+    {
+      id: 'backend',
+      title: 'Databases & Backend',
+      position: 'top-right',
+      skills: ['PostgreSQL'],
+    },
+    {
+      id: 'tools',
+      title: 'Engineering Tools',
+      position: 'bottom-right',
+      skills: ['MATLAB'],
+    },
+  ],
+
   toolbox: [
     { name: 'Figma', category: 'design' },
     { name: 'Framer', category: 'design' },

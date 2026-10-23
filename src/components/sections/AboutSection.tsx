@@ -2,10 +2,10 @@ import Image from 'next/image';
 import { portfolioData } from '@/data/portfolioData';
 import { PillBadge } from '@/components/ui/PillBadge';
 import { StrengthCard } from '@/components/ui/StrengthCard';
-import { ToolBadge } from '@/components/ui/ToolBadge';
+import { TechStackDiagram } from '@/components/ui/TechStackDiagram';
 
 export function AboutSection() {
-  const { profile, strengths, toolbox, sections } = portfolioData;
+  const { profile, strengths, techStack, sections } = portfolioData;
 
   return (
     <section
@@ -52,16 +52,12 @@ export function AboutSection() {
         </div>
       </div>
 
-      {/* Daily Toolbox */}
+      {/* (03) — TECH STACK Diagram */}
       <div className="mt-16 flex flex-col items-center border-t border-line/[0.06] pt-12 text-center sm:mt-20">
-        <h3 className="mb-6 font-mono text-s uppercase tracking-widest text-ink-faint">
+        <h3 className="mb-10 font-mono text-xs uppercase tracking-widest text-ink-faint sm:mb-12">
           {'(03) — TECH STACK'}
         </h3>
-        <ul className="flex max-w-xl flex-wrap items-center justify-center gap-2 sm:gap-3">
-          {toolbox.map((tool) => (
-            <ToolBadge key={tool.name} tool={tool} />
-          ))}
-        </ul>
+        <TechStackDiagram categories={techStack} />
       </div>
     </section>
   );

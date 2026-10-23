@@ -81,6 +81,13 @@ export interface DailyTool {
   category?: 'design' | 'development' | 'animation' | 'deployment';
 }
 
+export interface TechCategory {
+  id: string;
+  title: string;
+  position: 'top-left' | 'bottom-left' | 'top-right' | 'bottom-right';
+  skills: string[];
+}
+
 /* ------------------------------------------------------------------ */
 /* Additive types (not in the audit) for fully data-driven UI copy.    */
 /* ------------------------------------------------------------------ */
@@ -116,7 +123,8 @@ export interface PortfolioData {
     contact: Pick<SectionHeading, 'title' | 'titleHighlight'> & { callCtaLabel: string; sayHiLabel: string };
   };
   strengths: CoreStrength[];
-  toolbox: DailyTool[];
+  techStack: TechCategory[];
+  toolbox?: DailyTool[];
   projects: ProjectItem[];
   experience: ExperienceItem[];
   socials: SocialLink[];
