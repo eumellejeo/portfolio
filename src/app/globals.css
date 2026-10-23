@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/* Design tokens (RGB channels so Tailwind opacity modifiers work)     */
+/* ------------------------------------------------------------------ */
+@layer base {
+  :root {
+    --brand-bg: 245 244 240; /*      #F5F4F0 */
+    --brand-card: 236 234 228; /*    #ECEAE4 */
+    --brand-surface: 234 232 225; /* #EAE8E1 */
+    --brand-border: rgba(0, 0, 0, 0.07);
+
+    --ink: 28 25 23; /*       stone-900 */
+    --ink-soft: 68 64 60; /*  stone-700 */
+    --ink-muted: 120 113 108; /* stone-500 */
+    --ink-faint: 168 162 158; /* stone-400 */
+
+    --contrast: 28 25 23;
+    --contrast-fg: 255 255 255;
+    --paper: 255 255 255;
+    --chip: 245 245 244; /*       stone-100 */
+    --chip-hover: 231 229 228; /* stone-200 */
+    --line: 0 0 0;
+
+    --dot-color: rgba(0, 0, 0, 0.12);
+    color-scheme: light;
+  }
+
+  .dark {
+    --brand-bg: 20 20 19;
+    --brand-card: 28 27 25;
+    --brand-surface: 36 35 32;
+    --brand-border: rgba(255, 255, 255, 0.08);
+
+    --ink: 245 244 240;
+    --ink-soft: 214 211 209;
+    --ink-muted: 168 162 158;
+    --ink-faint: 120 113 108;
+
+    --contrast: 245 244 240;
+    --contrast-fg: 20 20 19;
+    --paper: 38 37 34;
+    --chip: 44 42 39;
+    --chip-hover: 58 56 52;
+    --line: 255 255 255;
+
+    --dot-color: rgba(255, 255, 255, 0.08);
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-brand-bg font-sans text-ink antialiased transition-colors duration-300;
+  }
+
+  ::selection {
+    @apply bg-brand-terracotta text-white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Utilities ported from the Stitch <style> blocks                     */
+/* ------------------------------------------------------------------ */
+@layer utilities {
+  /* Subtle dot grid pattern (formerly on the hero card, now full-bleed) */
+  .bg-dot-pattern {
+    background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Radial fade: visible at center, slowly fading towards the edges of the section */
+  .mask-radial-fade {
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0.6) 45%, rgba(0, 0, 0, 0.2) 70%, transparent 95%);
+    mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0.6) 45%, rgba(0, 0, 0, 0.2) 70%, transparent 95%);
+  }
+
+  /* Fade out dot pattern towards the bottom for a seamless transition into adjacent sections */
+  .mask-fade-bottom {
+    -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  }
+
+  .font-serif-title {
+    font-family: var(--font-serif-title), Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Tactile soft skeuomorphic dock tiles */
+  .dock-tile {
+    border-radius: 12px;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.08) 100%);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.25),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+      0 3px 6px -1px rgba(0, 0, 0, 0.12),
+      0 1px 3px -1px rgba(0, 0, 0, 0.08);
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dock-tile:hover {
+    transform: translateY(0.5px);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.28),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.22),
+      0 2px 4px -1px rgba(0, 0, 0, 0.12),
+      0 1px 2px -1px rgba(0, 0, 0, 0.08);
+  }
+
+  .dock-tile:active {
+    transform: translateY(1px);
+    box-shadow:
+      inset 0 1px 2px rgba(0, 0, 0, 0.25),
+      inset 0 -1px 1px rgba(255, 255, 255, 0.12),
+      0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  }
+}

@@ -1,0 +1,13 @@
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+.env*.local
+npm-debug.log*
+.DS_Store
+code.html
+extracted_text_from_website.md
+portfolio-audit.md
+avatar2.jpg
+/public/images/projects
