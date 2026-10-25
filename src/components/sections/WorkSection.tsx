@@ -1,14 +1,14 @@
 import { portfolioData } from '@/data/portfolioData';
 import { PillBadge } from '@/components/ui/PillBadge';
-import { ProjectCard } from '@/components/ui/ProjectCard';
+import { ProjectCarousel } from '@/components/ui/ProjectCarousel';
 
 export function WorkSection() {
   const { projects, sections } = portfolioData;
   const heading = sections.work;
 
   return (
-    <section id="work" aria-labelledby="work-heading" className="mx-auto max-w-4xl scroll-mt-24 px-4 pb-16 pt-20">
-      <header className="mb-12 text-center">
+    <section id="work" aria-labelledby="work-heading" className="mx-auto max-w-5xl scroll-mt-24 px-4 pb-16 pt-20">
+      <header className="mb-4 text-center sm:mb-6">
         {heading.eyebrow && (
           <PillBadge variant="mono-section" className="mb-2">
             {heading.eyebrow}
@@ -20,11 +20,7 @@ export function WorkSection() {
         {heading.caption && <p className="mt-2 font-mono text-xs text-ink-faint">{heading.caption}</p>}
       </header>
 
-      <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
-        {projects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} priority={index < 2} />
-        ))}
-      </div>
+      <ProjectCarousel projects={projects} label={`${heading.title} ${heading.titleHighlight ?? ''}`.trim()} />
     </section>
   );
 }

@@ -124,21 +124,29 @@ export function TechStackDiagram({ categories }: TechStackDiagramProps) {
       {/* -------------------------------------------------------------- */}
       {/* Desktop / Tablet Diagram Layout (matches reference image)      */}
       {/* -------------------------------------------------------------- */}
-      <div className="hidden md:flex md:items-stretch">
-        {/* Left column */}
-        <div className="flex min-w-0 flex-1 flex-col justify-between py-2">
+      <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr] md:items-start md:gap-x-0 md:gap-y-16 lg:gap-y-20">
+        {/* Row 1: Top Left */}
+        <div className="col-start-1 row-start-1 min-w-0">
           {topLeft && <CategoryBlock category={topLeft} side="left" vertical="top" />}
-          {bottomLeft && <CategoryBlock category={bottomLeft} side="left" vertical="bottom" />}
         </div>
 
-        {/* Center: spinning icosahedron */}
-        <div className="flex shrink-0 items-center justify-center py-8">
+        {/* Center: spinning icosahedron (spans both rows, vertically centered between connectors) */}
+        <div className="col-start-2 row-start-1 row-span-2 flex shrink-0 items-center justify-center px-4 pt-6 lg:px-6 lg:pt-8">
           <Icosahedron size={250} />
         </div>
 
-        {/* Right column */}
-        <div className="flex min-w-0 flex-1 flex-col justify-between py-2">
+        {/* Row 1: Top Right */}
+        <div className="col-start-3 row-start-1 min-w-0">
           {topRight && <CategoryBlock category={topRight} side="right" vertical="top" />}
+        </div>
+
+        {/* Row 2: Bottom Left — Frameworks & Libraries (aligned horizontally with Engineering Tools) */}
+        <div className="col-start-1 row-start-2 min-w-0">
+          {bottomLeft && <CategoryBlock category={bottomLeft} side="left" vertical="bottom" />}
+        </div>
+
+        {/* Row 2: Bottom Right — Engineering Tools (aligned horizontally with Frameworks & Libraries) */}
+        <div className="col-start-3 row-start-2 min-w-0">
           {bottomRight && <CategoryBlock category={bottomRight} side="right" vertical="bottom" />}
         </div>
       </div>

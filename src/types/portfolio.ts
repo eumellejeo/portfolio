@@ -38,16 +38,11 @@ export interface SiteProfile {
 }
 
 export interface ProjectItem {
-  id: string;
-  slug: string;
   title: string;
-  discipline: 'DESIGN' | 'DEVELOPMENT' | 'PRODUCT';
+  description?: string;
   year: number;
-  emoji: string;
-  dockBgColor: string;
   thumbnailUrl: string;
   thumbnailAlt: string;
-  summary?: string;
   externalUrl?: string;
 }
 
