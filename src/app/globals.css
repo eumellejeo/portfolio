@@ -125,3 +125,96 @@
       0 1px 2px 0 rgba(0, 0, 0, 0.1);
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Experience timeline                                                 */
+/* ------------------------------------------------------------------ */
+.tl-hex {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Monochrome SVG tinted via mask so any icon colour works on the badge */
+.tl-icon {
+  -webkit-mask: var(--tl-icon) center / contain no-repeat;
+  mask: var(--tl-icon) center / contain no-repeat;
+}
+
+.tl-spine {
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
+}
+
+.tl-spine-progress {
+  transform-origin: top;
+  transform: scaleY(var(--tl-progress, 1));
+  transition: transform 160ms linear;
+  box-shadow: 0 0 8px rgb(200 90 50 / 0.45);
+}
+
+/* ---- Reveal: initial (hidden) states, only once JS opts in -------- */
+[data-tl-animate='true'] [data-reveal] :is(.tl-anim-node, .tl-anim-connector, .tl-anim-card, .tl-anim-date, .tl-anim-hex, .tl-anim-label) {
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 300ms ease;
+}
+
+[data-tl-animate='true'] [data-reveal]:not(.is-visible) .tl-anim-node {
+  opacity: 0;
+  transform: scale(0);
+}
+
+[data-tl-animate='true'] [data-reveal]:not(.is-visible) .tl-anim-connector {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+[data-tl-animate='true'] [data-reveal]:not(.is-visible) .tl-anim-date {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+[data-tl-animate='true'] [data-reveal]:not(.is-visible) .tl-anim-card {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+[data-tl-animate='true'] [data-reveal]:not(.is-visible) .tl-anim-hex {
+  opacity: 0;
+  transform: scale(0.6) rotate(-30deg);
+}
+
+[data-tl-animate='true'] [data-reveal]:not(.is-visible) .tl-anim-label {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+/* Connectors grow out from the spine */
+.tl-entry[data-side='right'] .tl-anim-connector {
+  transform-origin: left center;
+}
+.tl-entry[data-side='left'] .tl-anim-connector {
+  transform-origin: right center;
+}
+
+/* Staggered sequence: node → connector → card → date */
+[data-tl-animate='true'] .tl-entry .tl-anim-connector { transition-delay: 120ms; }
+[data-tl-animate='true'] .tl-entry .tl-anim-card { transition-delay: 240ms; }
+[data-tl-animate='true'] .tl-entry .tl-anim-date { transition-delay: 340ms; }
+[data-tl-animate='true'] .tl-header .tl-anim-label { transition-delay: 180ms; }
+
+@media (min-width: 768px) {
+  /* Cards slide in along their connector, away from the spine */
+  [data-tl-animate='true'] .tl-entry[data-side='right']:not(.is-visible) .tl-anim-card {
+    transform: translateX(-28px);
+  }
+  [data-tl-animate='true'] .tl-entry[data-side='left']:not(.is-visible) .tl-anim-card {
+    transform: translateX(28px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tl-spine-progress {
+    transition: none;
+  }
+}

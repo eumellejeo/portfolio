@@ -53,14 +53,18 @@ export interface CoreStrength {
   iconType: 'design' | 'code' | 'ship';
 }
 
+export type ExperienceCategory = 'education' | 'work';
+
 export interface ExperienceItem {
-  id: string;
+  category: ExperienceCategory;
+  /** Company or school name. */
   company: string;
-  role: string;
+  /** Position or degree. Use `\n` for extra lines (first line = headline, rest = details/honours). */
+  position: string;
   period: string;
-  initials: string;
+  logo: string;
   isCurrent: boolean;
-  externalUrl?: string;
+  description?: string;
 }
 
 export interface SocialLink {
@@ -114,8 +118,8 @@ export interface PortfolioData {
     /** About title is profile.manifesto, so only the eyebrow lives here. */
     about: { eyebrow: string; toolboxLabel: string };
     work: SectionHeading;
-    experience: SectionHeading & { resumeCtaLabel: string };
-    contact: Pick<SectionHeading, 'title' | 'titleHighlight'> & { callCtaLabel: string; sayHiLabel: string };
+    experience: SectionHeading;
+    contact: Pick<SectionHeading, 'title' | 'titleHighlight'>;
   };
   strengths: CoreStrength[];
   techStack: TechCategory[];

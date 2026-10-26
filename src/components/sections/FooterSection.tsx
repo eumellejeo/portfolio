@@ -35,17 +35,6 @@ export function FooterSection() {
             <Mail className="h-4 w-4" aria-hidden="true" />
             {contact.email}
           </a>
-          {contact.callBookingUrl && (
-            <a
-              href={contact.callBookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-line/5 bg-chip/80 px-6 py-3.5 text-xs font-medium text-ink transition-colors hover:bg-chip-hover sm:text-sm"
-            >
-              {sections.contact.callCtaLabel}
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-          )}
         </div>
 
         <ul className="mb-14 flex items-center justify-center gap-2.5">

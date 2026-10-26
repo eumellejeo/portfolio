@@ -76,14 +76,6 @@ export function FloatingNavbar() {
         >
           {theme === 'dark' ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
         </button>
-
-        <a
-          href={`mailto:${profile.contact.email}`}
-          className="inline-flex items-center gap-1 rounded-full bg-contrast py-1 pl-2.5 pr-3 text-micro text-contrast-fg transition-opacity hover:opacity-90"
-        >
-          <MessageCircle className="h-3 w-3" aria-hidden="true" />
-          {sections.contact.sayHiLabel}
-        </a>
       </nav>
     </header>
   );

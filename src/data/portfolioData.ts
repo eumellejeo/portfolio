@@ -1,11 +1,8 @@
 import type { PortfolioData } from '@/types/portfolio';
 
-/**
+/*
  * Single source of truth for all portfolio content (audit §6.2).
  *
- * TODO(content): The social URLs and `callBookingUrl` below are placeholders
- * drafted in the audit — the original Stitch export only had dead `href="#"`
- * links. Replace them with real profile URLs before publishing.
  */
 export const portfolioData: PortfolioData = {
   profile: {
@@ -63,13 +60,10 @@ export const portfolioData: PortfolioData = {
       eyebrow: '(05) — EXPERIENCE',
       title: 'Eight years of',
       titleHighlight: 'shipping things.',
-      resumeCtaLabel: 'Full résumé on LinkedIn',
     },
     contact: {
       title: 'Let’s build',
       titleHighlight: 'something good.',
-      callCtaLabel: 'Book a call',
-      sayHiLabel: 'Say hi',
     },
   },
 
@@ -121,19 +115,6 @@ export const portfolioData: PortfolioData = {
     },
   ],
 
-  toolbox: [
-    { name: 'Figma', category: 'design' },
-    { name: 'Framer', category: 'design' },
-    { name: 'React', category: 'development' },
-    { name: 'Next.js', category: 'development' },
-    { name: 'TypeScript', category: 'development' },
-    { name: 'Tailwind', category: 'development' },
-    { name: 'Three.js', category: 'development' },
-    { name: 'Rive', category: 'animation' },
-    { name: 'Vercel', category: 'deployment' },
-    { name: 'Cursor', category: 'development' },
-  ],
-
   projects: [
     {
       title: 'SAMPLE PROJECT',
@@ -181,35 +162,51 @@ export const portfolioData: PortfolioData = {
 
   experience: [
     {
-      id: 'studio-marlowe',
-      company: 'Studio Marlowe',
-      role: 'Independent design engineer',
-      period: '2023 — NOW',
-      initials: 'SM',
-      isCurrent: true,
-    },
-    {
-      id: 'pitchside',
-      company: 'Pitchside',
-      role: 'Lead Product Designer',
-      period: '2020 — 2023',
-      initials: 'Ps',
+      category: 'work',
+      company: 'Chung Yuan Christian University (CYCU)',
+      position: 'Taiwan International Research Delegate',
+      period: 'July - August 2026',
+      logo: '/images/experience/cycu.svg',
       isCurrent: false,
     },
     {
-      id: 'common-room',
-      company: 'Common Room',
-      role: 'Front-end Engineer',
-      period: '2018 — 2020',
-      initials: 'CR',
+      category: 'work',
+      company: 'SF Group of Companies',
+      position: 'Lead Developer Intern',
+      period: 'June - July 2026',
+      logo: '/images/experience/sfgc.png',
       isCurrent: false,
     },
     {
-      id: 'kettle-and-co',
-      company: 'Kettle & Co.',
-      role: 'Junior Designer & Front-end',
-      period: '2016 — 2018',
-      initials: 'Ke',
+      category: 'work',
+      company: 'SF Group of Companies',
+      position: 'Machine Learning Research Intern',
+      period: 'April - June 2026',
+      logo: '/images/experience/sfgc.png',
+      isCurrent: false,
+    },
+    {
+      category: 'education',
+      company: 'Mapua Malayan Colleges Mindanao',
+      position: 'College\nBachelor of Science in Computer Engineering\nMagna Cum Laude\nTop 1 BSCpE of Batch 2026',
+      period: '2022 - 2026',
+      logo: '/images/experience/mapua.png',
+      isCurrent: false,
+    },
+    {
+      category: 'education',
+      company: 'Mapua Malayan Colleges Mindanao',
+      position: 'Senior High School (SHS)\nScience, Technology, Engineering, and Mathematics (STEM)\nAcademic Excellence Awardee',
+      period: '2020 - 2022',
+      logo: '/images/experience/mapua.png',
+      isCurrent: false,
+    },
+    {
+      category: 'education',
+      company: 'Colegio de San Ignacio',
+      position: 'Elementary - Junior High School',
+      period: '2010 - 2020',
+      logo: '/images/experience/cdsi.png',
       isCurrent: false,
     },
   ],
