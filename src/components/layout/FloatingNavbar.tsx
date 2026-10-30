@@ -2,6 +2,7 @@
 
 import { MessageCircle, Moon, Sun } from 'lucide-react';
 import { portfolioData } from '@/data/portfolioData';
+import { useScrollProgress } from '@/hooks/useScrollProgress';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
 import { useTheme } from '@/hooks/useTheme';
 import { useZonedClock } from '@/hooks/useZonedClock';
@@ -11,7 +12,7 @@ import type { SectionId } from '@/types/portfolio';
 const SPY_IDS: readonly SectionId[] = ['hero', 'about', 'work', 'experience', 'contact'];
 
 /**
- * Top-mounted glassmorphic pill dock (moved from bottom-fixed in the export).
+ * Glassmorphic pill dock: bottom-mounted on mobile, top-mounted from `sm` up.
  * - Scrollspy highlights the section in view
  * - SSR-safe live clock for the profile's time zone
  * - Functional light/dark toggle (was an inert button)
@@ -21,12 +22,13 @@ export function FloatingNavbar() {
   const active = useScrollSpy(SPY_IDS);
   const time = useZonedClock(profile.location.timeZone);
   const { theme, toggleTheme } = useTheme();
+  const progress = useScrollProgress();
 
   const cityCode = profile.location.city.slice(0, 3).toUpperCase();
   const themeLabel = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
 
   return (
-    <header className="pointer-events-none fixed left-1/2 top-4 z-50 w-max max-w-[calc(100vw-2rem)] -translate-x-1/2 sm:top-6">
+    <header className="pointer-events-none fixed left-1/2 bottom-[max(1rem,env(safe-area-inset-bottom))] z-50 w-max max-w-[calc(100vw-2rem)] -translate-x-1/2 sm:bottom-auto sm:top-6">
       <nav
         id="dock-nav"
         aria-label="Primary"
@@ -34,9 +36,28 @@ export function FloatingNavbar() {
       >
         <a
           href="#hero"
-          aria-label={`${profile.name} — back to top`}
-          className="flex h-6 w-6 items-center justify-center rounded-full bg-contrast font-serif text-micro font-bold text-contrast-fg transition-transform hover:scale-110"
+          aria-label={`${profile.name} — back to top (${Math.round(progress * 100)}% scrolled)`}
+          className="relative flex h-6 w-6 items-center justify-center rounded-full bg-contrast font-serif text-micro font-bold text-contrast-fg transition-transform hover:scale-110"
         >
+          {/* Scroll progress ring (overflows the avatar so the dock layout is unchanged) */}
+          <svg
+            className="pointer-events-none absolute -inset-1 h-8 w-8 -rotate-90"
+            viewBox="0 0 32 32"
+            fill="none"
+            aria-hidden="true"
+          >
+            <circle
+              cx="16"
+              cy="16"
+              r="14"
+              pathLength={100}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeDasharray={100}
+              strokeDashoffset={100 - progress * 100}
+              className="stroke-brand-terracotta"
+            />
+          </svg>
           {profile.name.charAt(0)}
         </a>
 
@@ -60,7 +81,7 @@ export function FloatingNavbar() {
           })}
         </ul>
 
-        <span className="inline-flex items-center gap-1 rounded-full bg-chip/80 px-2 py-0.5 font-mono text-micro text-ink-muted">
+        <span className="hidden items-center gap-1 rounded-full bg-chip/80 sm:inline-flex px-2 py-0.5 font-mono text-micro text-ink-muted">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
           <time id="lisbon-time" suppressHydrationWarning aria-label={`Local time in ${profile.location.city}`}>
             {cityCode} {time ?? '--:--'}

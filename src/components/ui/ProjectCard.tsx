@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { getImageProps } from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import type { ProjectItem } from '@/types/portfolio';
 
@@ -19,6 +19,17 @@ export interface ProjectCardProps {
 export function ProjectCard({ project, isActive, priority = false }: ProjectCardProps) {
   const isLinked = Boolean(project.externalUrl) && isActive;
 
+  const common = {
+    alt: project.title,
+    fill: true,
+    priority,
+    sizes: '(min-width: 1024px) 540px, (min-width: 640px) 58vw, 72vw',
+  };
+  const { props: desktopProps } = getImageProps({ ...common, src: project.thumbnailUrl });
+  const { props: mobileProps } = getImageProps({ ...common, src: project.thumbnailMobile });
+  const desktopImg = { props: desktopProps };
+  const mobileImg = { props: mobileProps };
+
   const body = (
     <div
       className={[
@@ -29,17 +40,19 @@ export function ProjectCard({ project, isActive, priority = false }: ProjectCard
           : 'shadow-md',
       ].join(' ')}
     >
-      <Image
-        src={project.thumbnailUrl}
-        alt={project.thumbnailAlt}
-        fill
-        priority={priority}
-        sizes="(min-width: 1024px) 540px, (min-width: 640px) 58vw, 72vw"
-        className={[
-          'object-cover transition-transform duration-700 ease-out',
-          isActive ? 'group-hover:scale-[1.04]' : '',
-        ].join(' ')}
-      />
+      <picture>
+        {/* Desktop/tablet (>= sm, 640px) uses the standard thumbnail */}
+        <source media="(min-width: 640px)" srcSet={desktopImg.props.srcSet} sizes={desktopImg.props.sizes} />
+        {/* Mobile (< sm) uses the mobile thumbnail */}
+        <source media="(max-width: 639px)" srcSet={mobileImg.props.srcSet} sizes={mobileImg.props.sizes} />
+        <img
+          {...mobileImg.props}
+          className={[
+            'object-cover transition-transform duration-700 ease-out',
+            isActive ? 'group-hover:scale-[1.04]' : '',
+          ].join(' ')}
+        />
+      </picture>
 
       {/* Legibility scrim */}
       <div
@@ -68,14 +81,19 @@ export function ProjectCard({ project, isActive, priority = false }: ProjectCard
       )}
 
       {/* Caption */}
-      <div className="absolute inset-x-0 bottom-0 p-5 text-left sm:p-7">
-        <h3 className="font-serif-title text-2xl leading-tight text-white sm:text-3xl">{project.title}</h3>
+      <div className="absolute inset-x-0 bottom-0 p-4 text-left sm:p-7">
+        <h3 className="line-clamp-2 text-balance font-serif-title text-lg leading-snug text-white sm:line-clamp-none sm:text-3xl sm:leading-tight">
+          {project.title}
+        </h3>
+        {/* Description is hidden on mobile to keep the compact card clean */}
         {project.description && (
-          <p className="mt-1.5 line-clamp-2 max-w-md text-sm leading-relaxed text-white/75">{project.description}</p>
+          <div className="hidden sm:block">
+            <p className="mt-1.5 line-clamp-2 max-w-md text-sm leading-relaxed text-white/75">{project.description}</p>
+          </div>
         )}
         <span
           className={[
-            'mt-4 block h-px origin-left bg-gradient-to-r from-brand-terracotta to-transparent transition-transform duration-700 ease-out',
+            'mt-3 block sm:mt-4 h-px origin-left bg-gradient-to-r from-brand-terracotta to-transparent transition-transform duration-700 ease-out',
             isActive ? 'scale-x-100' : 'scale-x-0',
           ].join(' ')}
           aria-hidden="true"

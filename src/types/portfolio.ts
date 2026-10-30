@@ -31,7 +31,7 @@ export interface ProjectItem {
   description?: string;
   year: number;
   thumbnailUrl: string;
-  thumbnailAlt: string;
+  thumbnailMobile: string;
   externalUrl?: string;
 }
 
