@@ -41,12 +41,14 @@ export function AboutSection() {
             id="about-heading"
             className="font-serif-title mb-8 text-3xl font-normal leading-[1.2] text-ink sm:text-4xl lg:text-[2.6rem]"
           >
-            {profile.manifesto} <span className="font-serif italic text-ink-soft">{profile.manifestoHighlight}</span>
+            {'I build intelligent systems spanning hardware, custom AI, and full-stack apps —'}
+            <br />
+            <span className="font-serif italic text-brand-terracotta">{'engineered to solve real problems.'}</span>
           </h2>
 
           <div className="grid w-full grid-cols-1 gap-3.5 sm:grid-cols-3">
             {strengths.map((strength) => (
-              <StrengthCard key={strength.id} strength={strength} />
+              <StrengthCard key={strength.title} strength={strength} />
             ))}
           </div>
         </div>
@@ -54,9 +56,14 @@ export function AboutSection() {
 
       {/* (03) — TECH STACK Diagram */}
       <div className="mt-16 flex flex-col items-center border-t border-line/[0.06] pt-12 text-center sm:mt-20">
-        <h3 className="mb-10 font-mono text-xs uppercase tracking-widest text-ink-faint sm:mb-12">
-          {'(03) — TECH STACK'}
-        </h3>
+        <div className="mb-2 flex justify-center sm:mb-2">
+          <PillBadge variant="mono-section">
+            {sections.tech.eyebrow}
+          </PillBadge>
+        </div>
+        <h2 id="tech-heading" className="font-serif-title mb-10 text-3xl font-normal text-ink sm:mb-14 sm:text-4xl">
+          {sections.tech.title} {sections.tech.titleHighlight && <span className="font-serif italic">{sections.tech.titleHighlight}</span>}
+        </h2>
         <TechStackDiagram categories={techStack} />
       </div>
     </section>

@@ -10,21 +10,16 @@ import { SocialButton } from '@/components/ui/SocialButton';
  */
 export function FooterSection() {
   const { profile, socials, sections } = portfolioData;
-  const { contact, location, bookingStatus } = profile;
-  const cta = sections.contact;
+  const { contact, location} = profile;
 
   return (
     <footer id="contact" aria-labelledby="contact-heading" className="relative mx-auto max-w-4xl scroll-mt-24 px-4 pb-8">
       <div className="relative overflow-hidden rounded-hero border border-line/[0.07] bg-paper/70 px-6 pb-16 pt-20 text-center shadow-xs sm:px-12">
-        {bookingStatus.isAvailable && (
-          <PillBadge variant="status-dot" dotColor="emerald" className="mb-8 bg-chip py-1.5">
-            <span className="font-medium text-ink">{bookingStatus.availableFromText}</span>
-          </PillBadge>
-        )}
 
         <h2 id="contact-heading" className="font-serif-title mb-8 text-4xl font-normal tracking-tight text-ink sm:text-6xl">
-          {cta.title}{' '}
-          {cta.titleHighlight && <span className="font-serif italic text-brand-terracotta">{cta.titleHighlight}</span>}
+          {'Let’s engineer '}
+          <br />
+          <span className="font-serif italic text-brand-terracotta">{'something impactful.'}</span>
         </h2>
 
         <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
@@ -61,7 +56,7 @@ export function FooterSection() {
       {/* Decorative watermark — hidden from assistive tech */}
       <div className="pointer-events-none mt-2 select-none overflow-hidden text-center opacity-[0.07]" aria-hidden="true">
         <span className="font-serif-title block whitespace-nowrap text-[7rem] font-bold leading-none tracking-tight text-ink sm:text-[11rem]">
-          {profile.name}
+          {'Eumelle'}
         </span>
       </div>
     </footer>

@@ -14,18 +14,7 @@ export interface SiteProfile {
     timeZone: string;
     gmtOffset: string;
   };
-  headline: {
-    lead: string;
-    highlight: string;
-    suffix: string;
-  };
   subtitle: string;
-  manifesto: string;
-  manifestoHighlight: string;
-  bookingStatus: {
-    isAvailable: boolean;
-    availableFromText: string;
-  };
   avatar: {
     imageUrl: string;
     altText: string;
@@ -47,10 +36,9 @@ export interface ProjectItem {
 }
 
 export interface CoreStrength {
-  id: string;
   title: string;
   description: string;
-  iconType: 'design' | 'code' | 'ship';
+  iconType: string;
 }
 
 export type ExperienceCategory = 'education' | 'work';
@@ -117,9 +105,13 @@ export interface PortfolioData {
     heroDockLabel: string;
     /** About title is profile.manifesto, so only the eyebrow lives here. */
     about: { eyebrow: string; toolboxLabel: string };
+    tech: {
+      eyebrow: string;
+      title: string;
+      titleHighlight: string;
+    };
     work: SectionHeading;
     experience: SectionHeading;
-    contact: Pick<SectionHeading, 'title' | 'titleHighlight'>;
   };
   strengths: CoreStrength[];
   techStack: TechCategory[];

@@ -12,7 +12,7 @@ import { PillBadge } from '@/components/ui/PillBadge';
  */
 export function HeroSection() {
   const { profile, sections, socials } = portfolioData;
-  const { headline, location } = profile;
+  const { location } = profile;
 
   return (
     <section
@@ -54,7 +54,8 @@ export function HeroSection() {
           {'Computer engineer,'}
           <br className="hidden sm:inline" /> {'from '}
           <span className="font-serif italic text-brand-terracotta">{'idea '}</span> {'to '}
-          <span className="font-serif italic text-brand-terracotta">{headline.highlight}</span>
+          <br className="hidden sm:inline" /> {' '}
+          <span className="font-serif italic text-brand-terracotta">{'production'}</span>{'.'}
         </h1>
 
         <p className="mb-10 text-xs font-normal tracking-wide text-ink-muted sm:text-sm">{profile.subtitle}</p>

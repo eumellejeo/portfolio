@@ -14,18 +14,7 @@ export const portfolioData: PortfolioData = {
       timeZone: 'Asia/Manila',
       gmtOffset: 'GMT+8',
     },
-    headline: {
-      lead: 'Computer engineer,',
-      highlight: 'development.',
-      suffix: 'from idea to',
-    },
-    subtitle: 'Product design · Front-end · Motion · Design systems',
-    manifesto: 'I’m a design engineer. I design products and build them myself —',
-    manifestoHighlight: 'no handoff, nothing lost in between.',
-    bookingStatus: {
-      isAvailable: true,
-      availableFromText: "Booking new projects — Nov '26",
-    },
+    subtitle: 'Machine Learning · Computer Vision · Full-Stack Web · Mobile Dev · Embedded & IoT',
     avatar: {
       imageUrl: '/images/avatar.jpg',
       altText: 'E.J. Mamacos portrait',
@@ -50,40 +39,38 @@ export const portfolioData: PortfolioData = {
       eyebrow: '(02) — ABOUT',
       toolboxLabel: 'DAILY TOOLBOX',
     },
+    tech: {
+      eyebrow: '(03) — TECH STACK',
+      title: 'Technological',
+      titleHighlight: 'Skills',
+    },
     work: {
-      eyebrow: '(04) — SELECTED WORK',
-      title: 'Selected',
-      titleHighlight: 'work',
+      eyebrow: '(04) — PROJECTS',
+      title: 'My',
+      titleHighlight: 'projects',
       caption: '2023 — 2026',
     },
     experience: {
       eyebrow: '(05) — EXPERIENCE',
-      title: 'Eight years of',
-      titleHighlight: 'shipping things.',
-    },
-    contact: {
-      title: 'Let’s build',
-      titleHighlight: 'something good.',
-    },
+      title: 'Overall',
+      titleHighlight: 'experience.',
+    }
   },
 
   strengths: [
     {
-      id: 'design',
-      title: 'Design',
-      description: 'Flows, systems and pixel-tight interfaces.',
-      iconType: 'design',
+      title: 'Intelligence',
+      description: 'Training high-precision object detection, and combinatorial feature selection models.',
+      iconType: 'ship',
     },
     {
-      id: 'engineer',
-      title: 'Engineer',
-      description: 'Production front-ends with motion and care.',
+      title: 'Infrastructure',
+      description: 'Architecting zero-trust Supabase schemas, pipelines, and serverless GPU workers.',
       iconType: 'code',
     },
     {
-      id: 'ship',
-      title: 'Ship',
-      description: 'Launched, measured and kept improving.',
+      title: 'Interface',
+      description: 'Building responsive web dashboards, geospatial views, and mobile UIs.',
       iconType: 'ship',
     },
   ],
